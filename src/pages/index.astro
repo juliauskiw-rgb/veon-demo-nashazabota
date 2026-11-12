@@ -29,6 +29,7 @@ const jsonld = {
   email,
   sameAs: socials.map((s) => s.url),
 };
+const IMG = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'img/';
 ---
 <Base lang="uk" title={title} description={description}>
   <Fragment slot="head">
@@ -58,11 +59,11 @@ const jsonld = {
     </div>
     <figure class="pano">
       <picture>
-        <source media="(min-width: 700px)" type="image/avif" srcset="/img/hero-wide-768.avif 768w, /img/hero-wide-1152.avif 1152w, /img/hero-wide-1536.avif 1536w" sizes="100vw" />
-        <source media="(min-width: 700px)" type="image/webp" srcset="/img/hero-wide-768.webp 768w, /img/hero-wide-1152.webp 1152w, /img/hero-wide-1536.webp 1536w" sizes="100vw" />
-        <source type="image/avif" srcset="/img/hero-narrow-480.avif 480w, /img/hero-narrow-780.avif 780w, /img/hero-narrow-1100.avif 1100w" sizes="100vw" />
-        <source type="image/webp" srcset="/img/hero-narrow-480.webp 480w, /img/hero-narrow-780.webp 780w, /img/hero-narrow-1100.webp 1100w" sizes="100vw" />
-        <img src="/img/hero-wide-1152.webp" width="1100" height="564" alt="Центр з висоти пташиного польоту: будинки з червоними дахами, зелень і море за обрієм" fetchpriority="high" decoding="async" />
+        <source media="(min-width: 700px)" type="image/avif" srcset={`${IMG}hero-wide-768.avif 768w, ${IMG}hero-wide-1152.avif 1152w, ${IMG}hero-wide-1536.avif 1536w`} sizes="100vw" />
+        <source media="(min-width: 700px)" type="image/webp" srcset={`${IMG}hero-wide-768.webp 768w, ${IMG}hero-wide-1152.webp 1152w, ${IMG}hero-wide-1536.webp 1536w`} sizes="100vw" />
+        <source type="image/avif" srcset={`${IMG}hero-narrow-480.avif 480w, ${IMG}hero-narrow-780.avif 780w, ${IMG}hero-narrow-1100.avif 1100w`} sizes="100vw" />
+        <source type="image/webp" srcset={`${IMG}hero-narrow-480.webp 480w, ${IMG}hero-narrow-780.webp 780w, ${IMG}hero-narrow-1100.webp 1100w`} sizes="100vw" />
+        <img src={`${IMG}hero-wide-1152.webp`} width="1100" height="564" alt="Центр з висоти пташиного польоту: будинки з червоними дахами, зелень і море за обрієм" fetchpriority="high" decoding="async" />
       </picture>
       <figcaption class="pano__cap container">Крижанівка, Одеська область. Центр і море поруч</figcaption>
     </figure>
@@ -87,9 +88,9 @@ const jsonld = {
     <div class="stay__grid">
       <figure class="stay__photo">
         <picture>
-          <source type="image/avif" srcset="/img/stay-480.avif 480w, /img/stay-768.avif 768w" sizes="(min-width: 900px) 55vw, 100vw" />
-          <source type="image/webp" srcset="/img/stay-480.webp 480w, /img/stay-768.webp 768w" sizes="(min-width: 900px) 55vw, 100vw" />
-          <img src="/img/stay-768.webp" width="768" height="960" alt="Палата з двома функціональними ліжками та поручнями" loading="lazy" decoding="async" />
+          <source type="image/avif" srcset={`${IMG}stay-480.avif 480w, ${IMG}stay-768.avif 768w`} sizes="(min-width: 900px) 55vw, 100vw" />
+          <source type="image/webp" srcset={`${IMG}stay-480.webp 480w, ${IMG}stay-768.webp 768w`} sizes="(min-width: 900px) 55vw, 100vw" />
+          <img src={`${IMG}stay-768.webp`} width="768" height="960" alt="Палата з двома функціональними ліжками та поручнями" loading="lazy" decoding="async" />
         </picture>
       </figure>
       <div class="stay__body">
@@ -122,9 +123,9 @@ const jsonld = {
         <QuestionHead id="program" question={q.program}>Лікар, фізичні терапевти, ерготерапевти, терапевти мови та медсестри — за індивідуальним планом</QuestionHead>
         <figure class="program__photo">
           <picture>
-            <source type="image/avif" srcset="/img/program-480.avif 480w, /img/program-768.avif 768w" sizes="(min-width: 900px) 40vw, 100vw" />
-            <source type="image/webp" srcset="/img/program-480.webp 480w, /img/program-768.webp 768w" sizes="(min-width: 900px) 40vw, 100vw" />
-            <img src="/img/program-768.webp" width="768" height="576" alt="Палата центру: функціональне ліжко з поручнем і букет квітів" loading="lazy" decoding="async" />
+            <source type="image/avif" srcset={`${IMG}program-480.avif 480w, ${IMG}program-768.avif 768w`} sizes="(min-width: 900px) 40vw, 100vw" />
+            <source type="image/webp" srcset={`${IMG}program-480.webp 480w, ${IMG}program-768.webp 768w`} sizes="(min-width: 900px) 40vw, 100vw" />
+            <img src={`${IMG}program-768.webp`} width="768" height="576" alt="Палата центру: функціональне ліжко з поручнем і букет квітів" loading="lazy" decoding="async" />
           </picture>
         </figure>
       </div>
@@ -167,16 +168,16 @@ const jsonld = {
       <div class="place__grid">
         <figure class="place__air">
           <picture>
-            <source type="image/avif" srcset="/img/place-air-640.avif 640w, /img/place-air-1024.avif 1024w" sizes="(min-width: 900px) 58vw, 100vw" />
-            <source type="image/webp" srcset="/img/place-air-640.webp 640w, /img/place-air-1024.webp 1024w" sizes="(min-width: 900px) 58vw, 100vw" />
-            <img src="/img/place-air-1024.webp" width="1024" height="768" alt="Будинки центру з червоними дахами та подвір'я із зеленню" loading="lazy" decoding="async" />
+            <source type="image/avif" srcset={`${IMG}place-air-640.avif 640w, ${IMG}place-air-1024.avif 1024w`} sizes="(min-width: 900px) 58vw, 100vw" />
+            <source type="image/webp" srcset={`${IMG}place-air-640.webp 640w, ${IMG}place-air-1024.webp 1024w`} sizes="(min-width: 900px) 58vw, 100vw" />
+            <img src={`${IMG}place-air-1024.webp`} width="1024" height="768" alt="Будинки центру з червоними дахами та подвір'я із зеленню" loading="lazy" decoding="async" />
           </picture>
         </figure>
         <figure class="place__room">
           <picture>
-            <source type="image/avif" srcset="/img/place-room-480.avif 480w, /img/place-room-768.avif 768w" sizes="(min-width: 900px) 40vw, 80vw" />
-            <source type="image/webp" srcset="/img/place-room-480.webp 480w, /img/place-room-768.webp 768w" sizes="(min-width: 900px) 40vw, 80vw" />
-            <img src="/img/place-room-768.webp" width="768" height="960" alt="Світла палата з еркером і букетом квітів" loading="lazy" decoding="async" />
+            <source type="image/avif" srcset={`${IMG}place-room-480.avif 480w, ${IMG}place-room-768.avif 768w`} sizes="(min-width: 900px) 40vw, 80vw" />
+            <source type="image/webp" srcset={`${IMG}place-room-480.webp 480w, ${IMG}place-room-768.webp 768w`} sizes="(min-width: 900px) 40vw, 80vw" />
+            <img src={`${IMG}place-room-768.webp`} width="768" height="960" alt="Світла палата з еркером і букетом квітів" loading="lazy" decoding="async" />
           </picture>
         </figure>
         <div class="place__text">
