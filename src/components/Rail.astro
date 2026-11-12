@@ -1,0 +1,8 @@
+---
+import { questions } from "../data/contacts";
+---
+<nav class="rail" aria-label="Питання родини">
+  <ol>
+    {questions.map((q) => <li><a href={`#${q.id}`} data-rail={q.id}>{q.short}</a></li>)}
+  </ol>
+</nav>

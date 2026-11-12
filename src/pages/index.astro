@@ -1,0 +1,242 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import FutureLink from "../components/FutureLink.astro";
+import Header from "../components/Header.astro";
+import Rail from "../components/Rail.astro";
+import StickyBar from "../components/StickyBar.astro";
+import Button from "../components/Button.astro";
+import Icon from "../components/Icon.astro";
+import QuestionHead from "../components/QuestionHead.astro";
+import logo from "../../img-src/logo.svg?url";
+import fontPiazzolla from "../../node_modules/@fontsource-variable/piazzolla/files/piazzolla-cyrillic-wght-normal.woff2?url";
+import "../styles/site.css";
+import { phones, telegram, whatsapp, email, socials, note, questions } from "../data/contacts";
+
+const q = Object.fromEntries(questions.map((x) => [x.id, x.q])) as Record<string, string>;
+const title = "Реабілітація з проживанням під Одесою | Наша Турбота";
+const description = "Центр фізичної реабілітації «Наша Турбота» у Крижанівці біля моря: після інсульту, травм і операцій, догляд 24/7. Від 14 700 грн за тиждень.";
+const methods = ["Фізична терапія", "Ерготерапія", "Терапія мови та мовлення", "Гідрокінезотерапія", "HIGT", "Терапія балансу", "Терапія ковтання", "Дзеркальна терапія", "Механотерапія", "CIMT", "Ортезування"];
+const steps = ["Діагностика", "Індивідуальний план", "Щоденні заняття", "Догляд 24/7", "Повернення додому"];
+const included = ["Цілодобовий догляд медсестер", "Огляд лікаря", "5-разове харчування з власної кухні", "Памперси й витратні матеріали"];
+const jsonld = {
+  "@context": "https://schema.org",
+  "@type": ["MedicalOrganization", "LocalBusiness"],
+  name: "Центр фізичної реабілітації «Наша Турбота»",
+  description,
+  address: { "@type": "PostalAddress", addressLocality: "смт Крижанівка", addressRegion: "Одеська область", postalCode: "67562", addressCountry: "UA" },
+  telephone: phones.map((p) => p.tel),
+  email,
+  sameAs: socials.map((s) => s.url),
+};
+---
+<Base lang="uk" title={title} description={description}>
+  <Fragment slot="head">
+    <link rel="preload" href={fontPiazzolla} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href={logo} type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+  </Fragment>
+  <Header slot="header" />
+  <Rail />
+
+  <Section id="hero" rec="R-043,R-047,R-053,S-GA-R002,S-GA-R003,S-GA-R004,S-R010,MA-R004" class="hero" label="Центр «Наша Турбота»">
+    <div class="hero__band on-field">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <h1 class="hero__h1">Реабілітація з проживанням біля моря під Одесою</h1>
+        <p class="hero__lede">Центр «Наша Турбота» у Крижанівці: після інсульту, травм і операцій, догляд 24/7</p>
+      </div>
+      <div class="hero__call">
+        <Button href={`tel:${phones[0].tel}`} icon="phone" class="hero__btn-call">Подзвонити</Button>
+        <Button href={telegram} icon="telegram" variant="ghost" external>Написати в Telegram</Button>
+        <p class="hero__numbers">
+          <a class="hero__number" href={`tel:${phones[0].tel}`}>{phones[0].text}</a>
+          <a class="hero__number hero__number--2" href={`tel:${phones[1].tel}`}>{phones[1].text}</a>
+        </p>
+      </div>
+    </div>
+    </div>
+    <figure class="pano">
+      <picture>
+        <source media="(min-width: 700px)" type="image/avif" srcset="/img/hero-wide-768.avif 768w, /img/hero-wide-1152.avif 1152w, /img/hero-wide-1536.avif 1536w" sizes="100vw" />
+        <source media="(min-width: 700px)" type="image/webp" srcset="/img/hero-wide-768.webp 768w, /img/hero-wide-1152.webp 1152w, /img/hero-wide-1536.webp 1536w" sizes="100vw" />
+        <source type="image/avif" srcset="/img/hero-narrow-480.avif 480w, /img/hero-narrow-780.avif 780w, /img/hero-narrow-1100.avif 1100w" sizes="100vw" />
+        <source type="image/webp" srcset="/img/hero-narrow-480.webp 480w, /img/hero-narrow-780.webp 780w, /img/hero-narrow-1100.webp 1100w" sizes="100vw" />
+        <img src="/img/hero-wide-1152.webp" width="1100" height="564" alt="Центр з висоти пташиного польоту: будинки з червоними дахами, зелень і море за обрієм" fetchpriority="high" decoding="async" />
+      </picture>
+      <figcaption class="pano__cap container">Крижанівка, Одеська область. Центр і море поруч</figcaption>
+    </figure>
+  </Section>
+
+  <Section id="diagnoses" rec="R-048" class="block diagnoses" label={q.diagnoses}>
+    <div class="container">
+      <QuestionHead id="diagnoses" question={q.diagnoses}>Інсульт — перший серед напрямів; ще травми, операції, хвороби нервової системи</QuestionHead>
+      <div class="diagnoses__grid">
+        <p class="phrase">
+          <FutureLink note={note}>Інсульт</FutureLink>, <FutureLink note={note}>черепно-мозкова травма</FutureLink>, <FutureLink note={note}>травма спинного мозку</FutureLink>, <FutureLink note={note}>хвороба Паркінсона</FutureLink>, <FutureLink note={note}>розсіяний склероз</FutureLink>, <FutureLink note={note}>деменція</FutureLink>, <FutureLink note={note}>онкологія</FutureLink>, відновлення після <FutureLink note={note}>операцій</FutureLink>, <FutureLink note={note}>переломів шийки стегна й таза</FutureLink>, <FutureLink note={note}>ампутацій</FutureLink>, <FutureLink note={note}>дитяча реабілітація</FutureLink>.
+        </p>
+        <aside class="diagnoses__note">
+          <p>Лежачим без занять — окремий пакет «Догляд».</p>
+          <a class="textlink" href="#stay">Що входить у перебування <Icon name="arrow" size={18} /></a>
+        </aside>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="stay" class="block stay" label={q.stay}>
+    <div class="stay__grid">
+      <figure class="stay__photo">
+        <picture>
+          <source type="image/avif" srcset="/img/stay-480.avif 480w, /img/stay-768.avif 768w" sizes="(min-width: 900px) 55vw, 100vw" />
+          <source type="image/webp" srcset="/img/stay-480.webp 480w, /img/stay-768.webp 768w" sizes="(min-width: 900px) 55vw, 100vw" />
+          <img src="/img/stay-768.webp" width="768" height="960" alt="Палата з двома функціональними ліжками та поручнями" loading="lazy" decoding="async" />
+        </picture>
+      </figure>
+      <div class="stay__body">
+        <QuestionHead id="stay" question={q.stay}>Медсестри — цілодобово, лікар оглядає пацієнтів</QuestionHead>
+        <div class="pkg" data-pkg>
+          <div class="pkg__tabs" role="tablist" aria-label="Пакет перебування">
+            <button type="button" role="tab" id="tab-rehab" aria-selected="true" aria-controls="pkg-rehab" data-tab="rehab">Реабілітація</button>
+            <button type="button" role="tab" id="tab-care" aria-selected="false" aria-controls="pkg-care" tabindex="-1" data-tab="care">Догляд</button>
+          </div>
+          <div class="pkg__panels">
+            <p class="pkg__panel is-active" role="tabpanel" id="pkg-rehab" aria-labelledby="tab-rehab">Реабілітація: щоденні заняття за індивідуальним планом: фізична терапія, ерготерапія, терапія мови та мовлення.</p>
+            <p class="pkg__panel" role="tabpanel" id="pkg-care" aria-labelledby="tab-care">Пакет «Догляд» для лежачих хворих — без реабілітаційних занять, із цілодобовим доглядом медсестер.</p>
+          </div>
+        </div>
+        <dl class="facts">
+          <div><dt>Догляд</dt><dd>Медсестри — цілодобово</dd></div>
+          <div><dt>Лікар</dt><dd>Огляд лікаря</dd></div>
+          <div><dt>Харчування</dt><dd>5-разове, з власної кухні; окреме меню для зондового харчування</dd></div>
+          <div><dt>Ліжка</dt><dd>Італійські функціональні ліжка, протипролежневі матраци</dd></div>
+          <div><dt>Включено</dt><dd>Памперси й витратні матеріали включені</dd></div>
+        </dl>
+        <p class="stay__more"><FutureLink note={note} class="textlink">Детальніше про стаціонар</FutureLink></p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="program" rec="R-045" class="block program" label={q.program}>
+    <div class="container">
+      <div class="program__top">
+        <QuestionHead id="program" question={q.program}>Лікар, фізичні терапевти, ерготерапевти, терапевти мови та медсестри — за індивідуальним планом</QuestionHead>
+        <figure class="program__photo">
+          <picture>
+            <source type="image/avif" srcset="/img/program-480.avif 480w, /img/program-768.avif 768w" sizes="(min-width: 900px) 40vw, 100vw" />
+            <source type="image/webp" srcset="/img/program-480.webp 480w, /img/program-768.webp 768w" sizes="(min-width: 900px) 40vw, 100vw" />
+            <img src="/img/program-768.webp" width="768" height="576" alt="Палата центру: функціональне ліжко з поручнем і букет квітів" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+      </div>
+      <ol class="path" aria-label="Шлях відновлення">
+        {steps.map((s) => <li class="path__step"><h3>{s}</h3></li>)}
+      </ol>
+      <div class="methods">
+        <h3 class="methods__h">Методи</h3>
+        <ul class="methods__list">
+          {methods.map((m) => <li>{m}</li>)}
+        </ul>
+        <p class="methods__more"><FutureLink note={note} class="textlink">Усі методи</FutureLink></p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="prices" rec="R-046" class="prices on-field" label={q.prices}>
+    <div class="container prices__grid">
+      <QuestionHead id="prices" question={q.prices}>Від 14 700 до 26 600 грн за тиждень проживання</QuestionHead>
+      <div class="prices__figure" aria-hidden="true">
+        <span class="prices__num">14 700</span>
+        <span class="prices__unit">грн / тиждень<br />до 26 600 грн</span>
+      </div>
+      <div class="prices__incl">
+        <h3>Що входить</h3>
+        <ul>{included.map((i) => <li>{i}</li>)}</ul>
+        <p class="prices__note">Точну вартість назвемо після розмови про стан близького. Ціна — за тиждень, а не за місяць.</p>
+        <div class="prices__cta">
+          <Button href={`tel:${phones[0].tel}`} icon="phone">Подзвонити</Button>
+          <Button href={telegram} icon="telegram" variant="ghost" external>Написати в Telegram</Button>
+        </div>
+        <p class="prices__more"><FutureLink note={note} class="textlink">Повний прайс</FutureLink></p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="place" rec="R-047" class="block place" label={q.place}>
+    <div class="container">
+      <QuestionHead id="place" question={q.place}>Крижанівка, під Одесою, біля моря</QuestionHead>
+      <div class="place__grid">
+        <figure class="place__air">
+          <picture>
+            <source type="image/avif" srcset="/img/place-air-640.avif 640w, /img/place-air-1024.avif 1024w" sizes="(min-width: 900px) 58vw, 100vw" />
+            <source type="image/webp" srcset="/img/place-air-640.webp 640w, /img/place-air-1024.webp 1024w" sizes="(min-width: 900px) 58vw, 100vw" />
+            <img src="/img/place-air-1024.webp" width="1024" height="768" alt="Будинки центру з червоними дахами та подвір'я із зеленню" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+        <figure class="place__room">
+          <picture>
+            <source type="image/avif" srcset="/img/place-room-480.avif 480w, /img/place-room-768.avif 768w" sizes="(min-width: 900px) 40vw, 80vw" />
+            <source type="image/webp" srcset="/img/place-room-480.webp 480w, /img/place-room-768.webp 768w" sizes="(min-width: 900px) 40vw, 80vw" />
+            <img src="/img/place-room-768.webp" width="768" height="960" alt="Світла палата з еркером і букетом квітів" loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+        <div class="place__text">
+          <p class="place__addr">смт Крижанівка, Одеська обл., 67562</p>
+          <p>Приймаємо пацієнтів з Одеської, Миколаївської та Херсонської областей.</p>
+          <p><FutureLink note={note} class="textlink">Звідки приймаємо пацієнтів</FutureLink></p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="trust" rec="R-051,S-GA-R008,S-R011" class="block trust" label={q.trust}>
+    <div class="container">
+      <QuestionHead id="trust" question={q.trust}>Сюжети Суспільне Одеса й «Перший міський», відео на YouTube, відгуки на Facebook</QuestionHead>
+      <ul class="trust__list">
+        <li><span class="trust__t">Суспільне Одеса</span><span class="trust__d">Сюжет із центру, 2024</span></li>
+        <li><span class="trust__t">«Перший міський»</span><span class="trust__d">Ефір, 2024</span></li>
+        <li><a class="trust__t trust__link" href={socials[2].url} target="_blank" rel="noopener noreferrer">YouTube <Icon name="arrow" size={26} /></a><span class="trust__d">Відео пацієнтів і занять</span></li>
+        <li><a class="trust__t trust__link" href={socials[1].url} target="_blank" rel="noopener noreferrer">Facebook <Icon name="arrow" size={26} /></a><span class="trust__d">Відгуки родин</span></li>
+      </ul>
+      <p class="trust__more"><FutureLink note={note} class="textlink">Відгуки і результати</FutureLink><FutureLink note={note} class="textlink">Команда центру</FutureLink></p>
+    </div>
+  </Section>
+
+  <Section id="contacts" class="contacts on-field" label={q.contacts}>
+    <div class="container">
+      <QuestionHead id="contacts" question={q.contacts}>Подзвоніть або напишіть у Telegram — місце можна забронювати, поки близький ще в лікарні</QuestionHead>
+      <div class="contacts__grid">
+        <ul class="phonerows">
+          {phones.map((p) => (
+            <li><a class="phonerow" href={`tel:${p.tel}`}><span>{p.text}</span><Icon name="phone" size={28} /></a></li>
+          ))}
+        </ul>
+        <div class="contacts__side">
+          <div class="contacts__btns">
+            <Button href={telegram} icon="telegram" external>Написати в Telegram</Button>
+            <Button href={whatsapp} icon="whatsapp" variant="ghost" external>WhatsApp</Button>
+          </div>
+          <p><a class="textlink" href={`mailto:${email}`}>{email}</a></p>
+          <p class="contacts__addr">смт Крижанівка, Одеська обл., 67562</p>
+          <p class="contacts__book">Бронюйте місце заздалегідь, поки близький ще в лікарні.</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+      <footer class="on-field" slot="footer"><div class="container footer">
+        <p class="footer__regions">Допомагаємо мешканцям Одеської, Миколаївської та Херсонської областей</p>
+        <ul class="footer__links">
+          {socials.map((s) => <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a></li>)}
+          <li><FutureLink note={note}>Блог</FutureLink></li>
+          <li><FutureLink note={note}>Команда центру</FutureLink></li>
+          <li><FutureLink note={note}>Відгуки і результати</FutureLink></li>
+        </ul>
+        <p class="footer__lang"><span aria-current="true">UK</span><FutureLink note={note}>RU</FutureLink></p>
+        <p class="footer__copy">Центр фізичної реабілітації «Наша Турбота»</p>
+      </div></footer>
+
+  <StickyBar />
+  <script>
+    import "../scripts/ui.ts";
+  </script>
+</Base>

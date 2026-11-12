@@ -1,0 +1,38 @@
+---
+import Icon from "./Icon.astro";
+import Button from "./Button.astro";
+import logo from "../../img-src/logo.svg?url";
+import { phones, telegram, questions } from "../data/contacts";
+const nav = questions.filter((q) => q.id !== "trust");
+---
+<header class="site-header on-field">
+  <div class="site-header__bar container">
+    <a class="site-header__logo" href="#top" aria-label="Наша Турбота — на початок сторінки">
+      <img src={logo} width="591" height="179" alt="Наша Турбота" decoding="async" />
+    </a>
+    <nav class="site-header__nav" aria-label="Розділи сторінки">
+      <ul>
+        {nav.map((q) => <li><a href={`#${q.id}`}>{q.nav}</a></li>)}
+      </ul>
+    </nav>
+    <a class="site-header__phone" href={`tel:${phones[0].tel}`}>{phones[0].text}</a>
+    <Button class="site-header__tg" href={telegram} variant="ghost" icon="telegram" external>Telegram</Button>
+    <a class="site-header__call" href={`tel:${phones[0].tel}`} aria-label={`Подзвонити ${phones[0].text}`}><Icon name="phone" size={22} /></a>
+    <details class="menu">
+      <summary class="menu__btn" aria-label="Меню питань">
+        <span class="menu__open"><Icon name="menu" size={24} /></span>
+        <span class="menu__close"><Icon name="close" size={24} /></span>
+      </summary>
+      <div class="menu__sheet">
+        <p class="menu__title">Питання, на які відповідає сторінка</p>
+        <ol class="menu__list">
+          {questions.map((q) => <li><a href={`#${q.id}`}>{q.q}</a></li>)}
+        </ol>
+        <div class="menu__contacts">
+          {phones.map((p) => <a href={`tel:${p.tel}`}>{p.text}</a>)}
+          <Button href={telegram} variant="primary" icon="telegram" external>Написати в Telegram</Button>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>

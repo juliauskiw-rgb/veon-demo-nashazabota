@@ -1,0 +1,9 @@
+---
+// Signature of the page: the family's question as H2, then a one-line factual answer.
+interface Props { id: string; question: string; class?: string; }
+const { id, question, class: cls } = Astro.props;
+---
+<header class:list={["qhead", cls]}>
+  <h2 class="qhead__q" id={`${id}-q`}>{question}</h2>
+  <p class="qhead__a" data-reveal style="--reveal-y:8px"><slot /></p>
+</header>

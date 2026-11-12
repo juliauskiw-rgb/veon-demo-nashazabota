@@ -1,0 +1,9 @@
+---
+import Icon from "./Icon.astro";
+// Link styled as a button. variant: primary (accent fill) | ghost (outline). On a field band the colours switch via .on-field.
+interface Props { href: string; variant?: "primary" | "ghost"; icon?: "phone" | "telegram" | "whatsapp" | "arrow"; external?: boolean; class?: string; }
+const { href, variant = "primary", icon, external = false, class: cls } = Astro.props;
+---
+<a class:list={["btn", `btn--${variant}`, cls]} href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+  {icon && <Icon name={icon} />}<span><slot /></span>
+</a>

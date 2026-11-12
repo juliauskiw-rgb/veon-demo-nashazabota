@@ -1,0 +1,63 @@
+/* Hallmark · shape: banded (field bands, paper, well) · genre: modern-minimal · theme: custom · job: book · idea: "кожен розділ — питання родини і пряма відповідь фактом" · vibe: "спокійна розмова, тепло, медична точність, море"
+ * paper: #F2F5F6 · accent: #A8432A · display: Piazzolla · body: Wix Madefor Text · hero: полоса поля бренда з H1 і блоком дзвінка, під нею панорама центру біля моря · nav: липка шапка на полі, якорі, телефон, Telegram; на 390 — питання в меню · footer: продовження смуги contacts · imagery: client photos · signature: питання-заголовок + відповідь одним рядком, рейка питань
+ * axes: light/roman-serif/warm · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: E, one big price figure and quiet motion carry emphasis; no decoration added */
+/* Hallmark · waive 49b · menu question links: open menu wraps to 2 lines at 320px (checked in browser) · concept signature: the family's questions are the menu */
+/* Hallmark · waive 25 · .phrase is a display-size link phrase (Piazzolla 40px, 40ch), about 35 chars per line · concept: diagnoses as one spoken sentence */
+/* Hallmark · waive 25 · .place__text is address plus a 2-line caption · caption measure from 28ch */
+/* Hallmark · waive F4 · same single action repeated per job: book (hero, price, contacts, menu); .pkg__tab[aria-selected] is a toggle state · never two fills in one viewport */
+/* Hallmark · waive 44c · hero 1440x900 ends at 909px (9px over) · concept: panorama of the place sits under the field band by design, caption may cross the fold */
+/* Line 1 of this file is the Hallmark stamp (docs/process/hallmark.md): filled from design/concept.md. */
+/* Client design tokens, from design/concept.md (veon-concept: colors, fonts). Breakpoints (mobile-first): 600 / 900 / 1200 / 1400 px. */
+
+/* Fonts: self-hosted (@fontsource-variable), cyrillic + latin only, font-display: swap. */
+@font-face { font-family: "Piazzolla"; font-style: normal; font-display: swap; font-weight: 100 900; src: url("../../node_modules/@fontsource-variable/piazzolla/files/piazzolla-cyrillic-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Piazzolla"; font-style: normal; font-display: swap; font-weight: 100 900; src: url("../../node_modules/@fontsource-variable/piazzolla/files/piazzolla-latin-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Wix Madefor Text"; font-style: normal; font-display: swap; font-weight: 400 800; src: url("../../node_modules/@fontsource-variable/wix-madefor-text/files/wix-madefor-text-cyrillic-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Wix Madefor Text"; font-style: normal; font-display: swap; font-weight: 400 800; src: url("../../node_modules/@fontsource-variable/wix-madefor-text/files/wix-madefor-text-latin-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  /* colour roles */
+  --color-bg: #F2F5F6;
+  --color-well: #E3EAEB;
+  --color-text: #10302E;
+  --color-muted: #4B5F5D;
+  --color-field: #062624;
+  --color-on-field: #EEF3F1;
+  --color-on-field-muted: #A9BDBA;
+  --color-accent: #A8432A;
+  --color-on-accent: #FFFCFA;
+  --color-accent-ink: #FFFCFA;
+  --color-accent-field: #E58A6A;
+  --color-on-accent-field: #062624;
+  --color-rule: #B9C8C9;
+  --color-rule-field: #1F4743;
+  --color-accent-hover: #8C3520;
+  --color-accent-field-hover: #F2A187;
+
+  /* type */
+  --font-display: "Piazzolla", Georgia, "Times New Roman", serif;
+  --font-body: "Wix Madefor Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-meta: .9375rem;                         /* 15 */
+  --fs-body: 1.125rem;                         /* 18 */
+  --fs-lead: 1.375rem;                         /* 22 */
+  --fs-h3: 1.75rem;                            /* 28 */
+  --fs-h2: clamp(1.875rem, 1.3rem + 2.2vw, 2.5rem); /* 30 -> 40 */
+  --fs-h1: clamp(2.5rem, 1.6rem + 3.8vw, 4.75rem);  /* 40 -> 76 */
+  --fs-price: clamp(5.5rem, 13vw, 11rem);
+
+  /* space (4/8 scale) */
+  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem; --s6: 1.5rem; --s8: 2rem; --s10: 2.5rem; --s12: 3rem; --s16: 4rem; --s24: 6rem; --s36: 9rem;
+  --space: 1.25rem;                            /* page gutter: 20 on phones */
+  --section: var(--s16);                       /* between blocks: 64 on phones */
+  --container: 1200px;
+  --header-h: 64px;
+
+  /* shape and motion */
+  --radius: 6px;
+  --radius-img: 4px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 120ms; --dur-mid: 220ms; --dur: 420ms; --dur-slow: 600ms;
+}
+@media (min-width: 600px) { :root { --space: 2.5rem; } }
+@media (min-width: 900px) { :root { --space: 4rem; --section: 7.5rem; --header-h: 72px; } }

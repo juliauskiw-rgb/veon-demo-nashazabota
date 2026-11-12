@@ -1,0 +1,8 @@
+---
+import Button from "./Button.astro";
+import { phones, telegram } from "../data/contacts";
+---
+<div class="sticky-bar" role="region" aria-label="Швидкий зв'язок">
+  <Button href={`tel:${phones[0].tel}`} icon="phone" variant="primary">Подзвонити</Button>
+  <Button href={telegram} icon="telegram" variant="ghost" external>Telegram</Button>
+</div>
